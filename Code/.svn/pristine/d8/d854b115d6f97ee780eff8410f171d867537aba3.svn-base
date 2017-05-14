@@ -1,0 +1,62 @@
+package ucc;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import biz.Contact;
+import biz.ContactDto;
+import exceptions.UnvalidInformation;
+import persistence.UnitOfWork;
+import persistence.dao.ContactDao;
+
+public class ContactUccImpl implements ContactUcc {
+
+  private ContactDao contactDao;
+  private UnitOfWork unit;
+
+  ContactUccImpl(ContactDao contactDao, UnitOfWork unit) {
+    this.contactDao = contactDao;
+    this.unit = unit;
+  }
+
+  /**
+   * {@inheritDoc}.
+   */
+  public Contact addContact(ContactDto contact) {
+    Contact contactDto = (Contact) contact;
+    try {
+      contactDto.checkNewContactInformation();
+    } catch (UnvalidInformation exception) {
+      exception.printStackTrace();
+      return null;
+    }
+    unit.startTransaction();
+    unit.addInsert(contactDto);
+    unit.commit();
+    contactDto.setContactId(unit.getResult());
+    if (contactDto.getContactId() == -1) {
+      return null;
+    }
+    return contactDto;
+  }
+
+  @Override
+  public List<ContactDto> getAllContacts() {
+    return contactDao.getAllContacts().stream().map(c -> (ContactDto) c)
+        .collect(Collectors.toList());
+  }
+
+  @Override
+  public Contact setContactActivity(ContactDto contactDto) {
+    unit.startTransaction();
+    System.out.println("debug contact ucc1");
+    Contact contact = (Contact) contactDto;
+    unit.addUpdate(contact);
+    unit.commit();
+    System.out.println("debug contact ucc2");
+    Contact contactRetour = contactDao.getContactById(contact.getContactId());
+    return contactRetour;
+  }
+
+
+}

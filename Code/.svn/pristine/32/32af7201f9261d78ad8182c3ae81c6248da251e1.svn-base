@@ -1,0 +1,15 @@
+package biz.objects;
+
+import biz.EventDto;
+import biz.EventFactory;
+
+/**
+ * This implementation of the factory is used to create new Real DTO objects.
+ * 
+ * @author Antoine.Maniet
+ */
+class EventFactoryImpl implements EventFactory {
+  public EventDto getEvent() {
+    return new RealEvent();
+  }
+}

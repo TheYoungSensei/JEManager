@@ -1,0 +1,220 @@
+import static org.junit.Assert.assertEquals;
+
+import java.util.Arrays;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import biz.EventDto;
+import biz.ParticipationDto;
+import exceptions.WrongStateException;
+import mockObjects.MockEvent;
+import mockObjects.MockParticipation;
+import ucc.ParticipationUccImpl;
+
+public class ParticipationUccImplTest {
+
+  private MockDalServices mockDal;
+  private MockUnitOfWork mockUnitOfWork1, mockUnitOfWork2, mockUnitOfWork3;
+  private ParticipationUccImpl ucc1, ucc2, ucc3, ucc4, ucc5;
+  private MockParticipationDao mockParticipationDao1, mockParticipationDao2, mockParticipationDao3,
+      mockParticipationDao4;
+  private ParticipationDto mockParticipationDto;
+  private EventDto mockEventDto;
+
+  /**
+   * @throws Exception If one is thrown during initialisation.
+   */
+  @Before
+  public void setUp() throws Exception {
+    mockDal = new MockDalServices();
+    // for test 1
+    mockParticipationDto = new MockParticipation();
+    mockParticipationDao1 = new MockParticipationDao(false, false, false);
+    mockUnitOfWork1 = new MockUnitOfWork(true, false); // addInsert expected
+    ucc1 = new ParticipationUccImpl(mockParticipationDao1, mockUnitOfWork1, mockDal);
+    // for test 2
+    mockUnitOfWork2 = new MockUnitOfWork(false, false); // nothing expected
+    mockParticipationDao2 = new MockParticipationDao(true, false, false);
+    ucc2 = new ParticipationUccImpl(mockParticipationDao2, mockUnitOfWork2, mockDal);
+    // for test 3->8
+    mockParticipationDao3 = new MockParticipationDao(false, true, false);
+    ucc3 = new ParticipationUccImpl(mockParticipationDao3, mockUnitOfWork2, mockDal);
+    mockEventDto = new MockEvent();
+    // for test 9
+    mockParticipationDto = new MockParticipation();
+    mockParticipationDao1 = new MockParticipationDao(false, false, false);
+    mockUnitOfWork3 = new MockUnitOfWork(false, true); // addInsert expected
+    ucc4 = new ParticipationUccImpl(mockParticipationDao1, mockUnitOfWork3, mockDal);
+    // for test 10
+    mockParticipationDao4 = new MockParticipationDao(false, false, true);
+    ucc5 = new ParticipationUccImpl(mockParticipationDao4, mockUnitOfWork2, mockDal);
+    mockEventDto = new MockEvent();
+  }
+
+  /**
+   * Checking that addParticipation calls the addInsert method on the unit.
+   */
+  @Test
+  public void testAddParticipation() {
+    ucc1.addParticipation(mockParticipationDto);
+    assertEquals("addInsert should have been called on the unit of work", true,
+        mockUnitOfWork1.validate());
+  }
+
+  /**
+   * Checking that getCurrentParticipations calls the getCurrentParticipations method on the dao.
+   */
+  @Test
+  public void testGetCurrentParticipations() {
+    ucc2.getCurrentParticipations();
+    assertEquals("getCurrentParticipations should have been called on the dao", true,
+        mockParticipationDao2.validate());
+  }
+
+  /**
+   * Checking that countInvitedParticipation calls the countParticipations method on the dao.
+   */
+  @Test
+  public void testCountInvitedParticipation() {
+    ucc3.countInvitedParticipation(mockEventDto);
+    assertEquals("countParticipations should have been called on the dao", true,
+        mockParticipationDao3.validate());
+  }
+
+  /**
+   * Checking that countConfirmedParticipation calls the countParticipations method on the dao.
+   */
+  @Test
+  public void testCountConfirmedParticipation() {
+    ucc3.countConfirmedParticipation(mockEventDto);
+    assertEquals("countParticipations should have been called on the dao", true,
+        mockParticipationDao3.validate());
+  }
+
+  /**
+   * Checking that countRefusedParticipation calls the countParticipations method on the dao.
+   */
+  @Test
+  public void testCountRefusedParticipation() {
+    ucc3.countRefusedParticipation(mockEventDto);
+    assertEquals("countParticipations should have been called on the dao", true,
+        mockParticipationDao3.validate());
+  }
+
+  /**
+   * Checking that countCancelledParticipation calls the countParticipations method on the dao.
+   */
+  @Test
+  public void testCountCancelledParticipation() {
+    ucc3.countCancelledParticipation(mockEventDto);
+    assertEquals("countParticipations should have been called on the dao", true,
+        mockParticipationDao3.validate());
+  }
+
+  /**
+   * Checking that countInvoicedParticipation calls the countParticipations method on the dao.
+   */
+  @Test
+  public void testCountInvoicedParticipation() {
+    ucc3.countInvoicedParticipation(mockEventDto);
+    assertEquals("countParticipations should have been called on the dao", true,
+        mockParticipationDao3.validate());
+  }
+
+  /**
+   * Checking that countPaidParticipation calls the countParticipations method on the dao.
+   */
+  @Test
+  public void testCountPaidParticipation() {
+    ucc3.countPaidParticipation(mockEventDto);
+    assertEquals("countParticipations should have been called on the dao", true,
+        mockParticipationDao3.validate());
+  }
+
+  /**
+   * Checking that editStates calls the addUpdate method on the unit of work.
+   * 
+   * @throws WrongStateException if thrown by method under test
+   */
+  @Test
+  public void testEditStates() throws WrongStateException {
+    ucc4.editStates(Arrays.asList(mockParticipationDto));
+    assertEquals("addUpdate should have been called on the unit of work", true,
+        mockUnitOfWork3.validate());
+  }
+
+  /**
+   * Checking that getAllPartcipationFor calls the getParticipationForState method on the dao.
+   */
+  @Test
+  public void testGetAllPartcipationFor() {
+    ucc5.getAllPartcipationFor(mockEventDto);
+    assertEquals("addUpdate should have been called on the unit of work", true,
+        mockParticipationDao4.validate());
+  }
+
+  /**
+   * Checking that getInvitedParticipationsFor calls the getParticipationForState method on the dao.
+   */
+  @Test
+  public void testGetInvitedParticipationsFor() {
+    ucc5.getInvitedParticipationsFor(mockEventDto);
+    assertEquals("addUpdate should have been called on the unit of work", true,
+        mockParticipationDao4.validate());
+  }
+
+  /**
+   * Checking that getConfirmedParticipationsFor calls the getParticipationForState method on the
+   * dao.
+   */
+  @Test
+  public void testGetConfirmedParticipationsFor() {
+    ucc5.getConfirmedParticipationsFor(mockEventDto);
+    assertEquals("addUpdate should have been called on the unit of work", true,
+        mockParticipationDao4.validate());
+  }
+
+  /**
+   * Checking that getRefusedParticipationsFor calls the getParticipationForState method on the dao.
+   */
+  @Test
+  public void testGetRefusedParticipationsFor() {
+    ucc5.getRefusedParticipationsFor(mockEventDto);
+    assertEquals("addUpdate should have been called on the unit of work", true,
+        mockParticipationDao4.validate());
+  }
+
+  /**
+   * Checking that getCancelledParticipationsFor calls the getParticipationForState method on the
+   * dao.
+   */
+  @Test
+  public void testGetCancelledParticipationsFor() {
+    ucc5.getCancelledParticipationsFor(mockEventDto);
+    assertEquals("addUpdate should have been called on the unit of work", true,
+        mockParticipationDao4.validate());
+  }
+
+  /**
+   * Checking that getInvoicedParticipationsFor calls the getParticipationForState method on the
+   * dao.
+   */
+  @Test
+  public void testGetInvoicedParticipationsFor() {
+    ucc5.getInvoicedParticipationsFor(mockEventDto);
+    assertEquals("addUpdate should have been called on the unit of work", true,
+        mockParticipationDao4.validate());
+  }
+
+  /**
+   * Checking that getPaidParticipationsFor calls the getParticipationForState method on the dao.
+   */
+  @Test
+  public void testGetPaidParticipationsFor() {
+    ucc5.getPaidParticipationsFor(mockEventDto);
+    assertEquals("addUpdate should have been called on the unit of work", true,
+        mockParticipationDao4.validate());
+  }
+
+}

@@ -1,0 +1,90 @@
+package ucc;
+
+import biz.User;
+import biz.UserDto;
+import exceptions.UnvalidInformation;
+import exceptions.UserNameAlreadyPickedException;
+import persistence.UnitOfWorkImpl;
+import persistence.dao.UserDao;
+
+public class UserUccImpl implements UserUcc {
+
+  private UserDao userDao;
+  private UnitOfWorkImpl unit;
+
+  /**
+   * @param userDao The userUCC's associated dao, needed for query methods.
+   * @param dalServices An instance of dalServices needed for transactions.
+   */
+  UserUccImpl(UserDao userDao, UnitOfWorkImpl unit) {
+    this.userDao = userDao;
+    this.unit = unit;
+  }
+
+  /**
+   * {@inheritDoc}.
+   */
+  public UserDto login(UserDto user) {
+    unit.startTransaction();
+    User userDb = userDao.getUserByPseudo(user.getUsername());
+    unit.commit();
+    if (userDb == null) {
+      return null;
+    }
+    if (!userDb.checkPassword(user.getPassword())) {
+      return null;
+    } else {
+      return userDb;
+    }
+  }
+
+
+  @Override
+  public User register(UserDto user) throws UserNameAlreadyPickedException, UnvalidInformation {
+    unit.startTransaction();
+    User bizUser = (User) user;
+    bizUser.checkNewUserInformation();
+    bizUser.encryptPassword();
+    User userDb = userDao.getUserByPseudo(user.getUsername());
+    if (userDb != null) {
+      throw new UserNameAlreadyPickedException("Pseudo déjà pris !");
+    }
+    int idNewUser = userDao.createUser(user);
+    User newUserDb = userDao.getUserById(idNewUser);
+    unit.commit();
+    return newUserDb;
+  }
+
+
+  @Override
+  public UserDto getUserByUsername(String username) {
+    // Checking parameter
+    if (username == null) {
+      throw new IllegalArgumentException();
+    }
+    // Getting the user via the Dao
+    UserDto user = userDao.getUserByPseudo(username);
+    // If no user is found, throwing a runtime exception
+    if (user == null) {
+      throw new IllegalArgumentException();
+    }
+    return user;
+  }
+
+  @Override
+  public UserDto getUserById(int id) {
+    // Checking parameter
+    if (id < 0) {
+      throw new IllegalArgumentException();
+    }
+    // Getting the user via the Dao
+    UserDto userDto = userDao.getUserById(id);
+    if (userDto == null) {
+      throw new IllegalArgumentException();
+    }
+    return userDto;
+  }
+
+
+
+}

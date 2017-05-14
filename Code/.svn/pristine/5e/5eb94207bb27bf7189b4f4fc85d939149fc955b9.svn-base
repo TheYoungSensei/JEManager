@@ -1,0 +1,31 @@
+<div class="panel panel-default">
+	<div class="panel-heading">Formulaire d'ajout d'un contact</div>
+	<div class="panel-body">
+		<!-- Start of the add contact form -->
+		<form id="form_addContact">
+			<div class="form-group">
+				<label for="idCompany">Id de l'entreprise :</label> <input
+					type="text" class="form-control" id="form_addContactCompany">
+			</div>
+			<div class="form-group">
+				<label for="firstName">Prénom contact :</label> <input type="text"
+					class="form-control" id="form_addContactFirstName">
+			</div>
+			<div class="form-group">
+				<label for="lastName">Nom contact :</label> <input type="text"
+					class="form-control" id="form_addContactLastName">
+			</div>
+			<div class="form-group">
+				<label for="email">Email :</label> <input type="text"
+					class="form-control" id="form_addContactEmail">
+			</div>
+			<div class="form-group">
+				<label for="phoneNumber">Téléphone :</label> <input type="number"
+					class="form-control" id="form_addContactPhoneNumber">
+			</div>
+			<button type="submit" class="btn btn-success"
+				id="form_addContactSubmit">Ajouter</button>
+		</form>
+		<!-- End of add contact form -->
+	</div>
+</div>

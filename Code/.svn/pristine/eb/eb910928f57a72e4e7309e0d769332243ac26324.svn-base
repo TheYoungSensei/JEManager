@@ -1,0 +1,52 @@
+import java.util.Arrays;
+import java.util.List;
+
+import biz.Contact;
+import biz.Dto;
+import mockObjects.MockContact;
+import persistence.dao.ContactDao;
+
+public class MockContactDao implements ContactDao, Validator {
+
+  private boolean getAllContactsExpected, getAllContactsReceived;
+
+  public MockContactDao(boolean getAllContactsExpected) {
+    this.getAllContactsExpected = getAllContactsExpected;
+  }
+
+  @Override
+  public int update(Dto dto) {
+    // TODO Auto-generated method stub
+    return 0;
+  }
+
+  @Override
+  public int insert(Dto dto) {
+    // TODO Auto-generated method stub
+    return 0;
+  }
+
+  @Override
+  public int delete(Dto dto) {
+    // TODO Auto-generated method stub
+    return 0;
+  }
+
+  @Override
+  public boolean validate() {
+    return getAllContactsExpected == getAllContactsReceived;
+  }
+
+  @Override
+  public List<Contact> getAllContacts() {
+    getAllContactsReceived = true;
+    return Arrays.asList(new MockContact());
+  }
+
+  @Override
+  public Contact getContactById(int idContact) {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+}

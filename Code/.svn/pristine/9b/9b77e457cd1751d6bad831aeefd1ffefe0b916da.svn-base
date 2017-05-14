@@ -1,0 +1,98 @@
+package mockObjects;
+
+import biz.Attendance;
+import biz.Contact;
+import biz.Participation;
+
+public class MockAttendance implements Attendance {
+  @Override
+  public int getAttendanceId() {
+    // TODO Auto-generated method stub
+    return 0;
+  }
+
+  @Override
+  public Contact getContact() {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public Participation getParticipation() {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public boolean isConfirmed() {
+    // TODO Auto-generated method stub
+    return false;
+  }
+
+  @Override
+  public void setAttendanceId(int attendanceId) {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public void setContact(Contact contact) {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public void setParticipation(Participation participation) {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public void setConfirmed(boolean confirmed) {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public int getContactId() {
+    // TODO Auto-generated method stub
+    return 0;
+  }
+
+  @Override
+  public void setContactId(int contactId) {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public int getParticipationId() {
+    // TODO Auto-generated method stub
+    return 0;
+  }
+
+  @Override
+  public void setParticipationId(int participationId) {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public String getId() {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public void setVersion(int version) {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public int getVersion() {
+    // TODO Auto-generated method stub
+    return 0;
+  }
+
+}

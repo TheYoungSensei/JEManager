@@ -1,0 +1,58 @@
+import biz.Dto;
+import persistence.UnitOfWork;
+
+public class MockUnitOfWork implements UnitOfWork, Validator {
+
+  private boolean addInsertExpected, addInsertReceived, addUpdateExpected, addUpdateReceived;
+
+  public MockUnitOfWork(boolean addInsertExpected, boolean addUpdateExpected) {
+    this.addInsertExpected = addInsertExpected;
+    this.addUpdateExpected = addUpdateExpected;
+  }
+
+  @Override
+  public void startTransaction() {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public void rollBack() {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public void addUpdate(Dto dto) {
+    addUpdateReceived = true;
+  }
+
+  @Override
+  public void addInsert(Dto dto) {
+    addInsertReceived = true;
+  }
+
+  @Override
+  public void addDelete(Dto dto) {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public void commit() {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public int getResult() {
+    // TODO Auto-generated method stub
+    return 0;
+  }
+
+  @Override
+  public boolean validate() {
+    return addInsertExpected == addInsertReceived && addUpdateExpected == addUpdateReceived;
+  }
+
+}

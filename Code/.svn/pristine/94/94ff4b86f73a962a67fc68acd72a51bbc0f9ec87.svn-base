@@ -1,0 +1,65 @@
+package ucc;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import biz.Attendance;
+import biz.AttendanceDto;
+import biz.ParticipationDto;
+import persistence.UnitOfWork;
+import persistence.dao.AttendanceDao;
+
+public class AttendanceUccImpl implements AttendanceUcc {
+
+  private AttendanceDao attendanceDao;
+  private UnitOfWork unit;
+
+  public AttendanceUccImpl(AttendanceDao attendanceDao, UnitOfWork unit) {
+    this.attendanceDao = attendanceDao;
+    this.unit = unit;
+  }
+
+  @Override
+  public AttendanceDto cancelAttendance(AttendanceDto attendanceDto) {
+    Attendance attendance = (Attendance) attendanceDto;
+    attendance = attendanceDao.setAttendanceConfirmation(attendance);
+    if (!attendance.isConfirmed()) {
+      return attendance;
+    }
+    return null;
+  }
+
+  @Override
+  public List<Integer> addAllForCompany(AttendanceDto attendanceDto, int idCompany) {
+    unit.startTransaction();
+    Attendance attendance = (Attendance) attendanceDto;
+    List<Integer> toReturn = attendanceDao.addAllForCompany(attendance, idCompany);
+    unit.commit();
+    return toReturn;
+  }
+
+  @Override
+  public void editConfirmation(List<AttendanceDto> attendanceDtos) {
+    unit.startTransaction();
+
+    for (AttendanceDto attendanceDto : attendanceDtos) {
+      this.cancelAttendance(attendanceDto);
+    }
+
+
+    unit.commit();
+
+  }
+
+  @Override
+  public List<AttendanceDto> getallAttendance(ParticipationDto participation) {
+    List<AttendanceDto> toReturn = new ArrayList<>();
+    unit.startTransaction();
+    toReturn = attendanceDao.findAttendanceContactByParticipation(participation);
+    unit.commit();
+    return toReturn;
+  }
+
+
+
+}

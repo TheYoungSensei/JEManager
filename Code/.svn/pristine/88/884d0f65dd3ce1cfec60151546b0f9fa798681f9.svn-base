@@ -1,0 +1,19 @@
+package mockucc;
+
+import biz.UserDto;
+import biz.UserFactory;
+import mockObjects.MockUser;
+
+/**
+ * This implementation of the factory is used to create Mock DTO objects for testing purposes.
+ * 
+ * @author Maniet
+ */
+class MockFactory implements UserFactory {
+
+  public UserDto getUser() {
+    return new MockUser();
+
+  }
+
+}

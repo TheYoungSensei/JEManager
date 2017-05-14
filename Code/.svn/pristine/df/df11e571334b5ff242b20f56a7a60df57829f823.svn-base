@@ -1,0 +1,116 @@
+package mockObjects;
+
+import java.time.LocalDateTime;
+
+import biz.Company;
+import biz.User;
+
+/**
+ * This is the MockCompany class. See the MockUser class documentation for more info on how Mock
+ * Objects are used.
+ * 
+ * @author Maniet.Alexandre
+ */
+public class MockCompany implements Company {
+
+  private MockUser creator = new MockUser();
+
+  @Override
+  public int getCompanyId() {
+    return 1;
+  }
+
+  @Override
+  public User getCreator() {
+    return creator;
+  }
+
+  @Override
+  public int getCreatorId() {
+    return creator.getUserId();
+  }
+
+  @Override
+  public String getName() {
+    return "sampleCompany";
+  }
+
+  @Override
+  public LocalDateTime getDateFirstContact() {
+    return LocalDateTime.now().minusHours(1);
+  }
+
+  @Override
+  public String getStreet() {
+    return "sampleStreet";
+  }
+
+  @Override
+  public int getNumber() {
+    return 1;
+  }
+
+  @Override
+  public String getBox() {
+    return "sampleBox";
+  }
+
+  @Override
+  public int getPostalCode() {
+    return 1;
+  }
+
+  @Override
+  public String getMunicipality() {
+    return "sampleMunicipality";
+  }
+
+  @Override
+  public void setCompanyId(int companyId) {}
+
+  @Override
+  public void setCreatorId(int id) {}
+
+  @Override
+  public void setCreator(User creator) {}
+
+  @Override
+  public void setName(String name) {}
+
+  @Override
+  public void setDateFirstContact(LocalDateTime dateFirstContact) {}
+
+  @Override
+  public void setStreet(String street) {}
+
+  @Override
+  public void setNumber(int number) {}
+
+  @Override
+  public void setBox(String box) {}
+
+  @Override
+  public void setPostalCode(int postalCode) {}
+
+  @Override
+  public void setMunicipality(String municipality) {}
+
+  @Override
+  public void setVersion(int version) {
+
+
+  }
+
+  @Override
+  public int getVersion() {
+
+    return 1;
+  }
+
+  @Override
+  public String getId() {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+}

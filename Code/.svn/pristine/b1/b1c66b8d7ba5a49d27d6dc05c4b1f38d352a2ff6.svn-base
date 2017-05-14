@@ -1,0 +1,56 @@
+package mockObjects;
+import biz.Dto;
+import biz.User;
+import persistence.dao.UserDao;
+
+public class MockUserDao implements UserDao, Validator {
+
+  private boolean getUserByPseudoExpected, getUserByPseudoReceived, getUserByIdExpected,
+      getUserByIdReceived, giveNoUserName;
+
+  public MockUserDao(boolean getUserByIdExpected, boolean getUserByPseudoExpected,
+      boolean giveNoUserName) {
+    this.getUserByIdExpected = getUserByIdExpected;
+    this.getUserByPseudoExpected = getUserByPseudoExpected;
+    this.giveNoUserName = giveNoUserName;
+  }
+
+  @Override
+  public int update(Dto dto) {
+    // TODO Auto-generated method stub
+    return 0;
+  }
+
+  @Override
+  public int insert(Dto dto) {
+    // TODO Auto-generated method stub
+    return 0;
+  }
+
+  @Override
+  public int delete(Dto dto) {
+    // TODO Auto-generated method stub
+    return 0;
+  }
+
+  @Override
+  public boolean validate() {
+    return getUserByIdExpected == getUserByIdReceived
+        && getUserByPseudoExpected == getUserByPseudoReceived;
+  }
+
+  @Override
+  public User getUserByPseudo(String pseudo) {
+    getUserByPseudoReceived = true;
+    if (giveNoUserName)
+      return null;
+    return new MockUser();
+  }
+
+  @Override
+  public User getUserById(int id) {
+    getUserByIdReceived = true;
+    return new MockUser();
+  }
+
+}

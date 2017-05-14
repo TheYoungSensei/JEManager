@@ -1,0 +1,19 @@
+package mockObjects;
+import persistence.DalServices;
+
+/**
+ * Used in tests, acts as a fake dal.
+ * 
+ * @author Alexandre.Maniet
+ */
+public class MockDalServices implements DalServices {
+
+  @Override
+  public void commit() {}
+
+  @Override
+  public void rollback() {}
+
+  @Override
+  public void startTransaction() {}
+}

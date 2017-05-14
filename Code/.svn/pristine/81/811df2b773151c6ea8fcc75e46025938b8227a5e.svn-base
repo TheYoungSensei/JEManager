@@ -1,0 +1,30 @@
+package persistence.dao;
+
+import java.util.List;
+
+import biz.Event;
+import biz.Participation;
+
+public interface ParticipationDao extends Dao {
+
+  List<Participation> getCurrentParticipations();
+
+  /**
+   * Count the participation of the given type.
+   * 
+   * @author Sacre.Christopher
+   * @param type : The type of participation.
+   * @param event : The event to get the number of participations.
+   * @return the number of participations
+   */
+
+  int countParticipations(Event event, String type);
+
+  /**
+   * @author Sacre.Christopher
+   * @param event the event to get the participations.
+   * @param type the type of participations to get.
+   * @return a list of participation of the given state for the given event.
+   */
+  List<Participation> getParticipationForState(Event event, String type);
+}

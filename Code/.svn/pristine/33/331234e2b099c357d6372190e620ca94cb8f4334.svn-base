@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html id="myDocument">
+<head>
+<meta charset="UTF-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="pictures/favicon.ico" />
+<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<!--  Begin Favicons -->
+<link rel="icon" type="image/png" sizes="96x96"
+	href="pictures/favicons/favicon-96x96.png">
+<!--  End Favicons -->
+
+<!-- MetisMenu CSS -->
+<link href="vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+<!-- Custom CSS SB-ADMIN -->
+<link href="vendor/bootstrap/css/sb-admin-2.css" rel="stylesheet">
+<!-- Morris Charts CSS -->
+<link href="vendor/morris/morris.css" rel="stylesheet">
+<!-- Custom Fonts -->
+<link href="vendor/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css">
+
+<!-- DataTables CSS -->
+<link href="vendor/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+<!-- DataTables Responsive CSS -->
+<link href="vendor/dataTables/dataTables.responsive.css"
+	rel="stylesheet">
+
+<!-- ToastR (Info Box) CSS -->
+<link href="vendor/toastr/toastr.css" rel="stylesheet">
+
+
+
+
+<!-- Custom CSS -->
+<link href="css/jem.css" rel="stylesheet">
+
+
+
+<title>Journée Entreprises Manager</title>
+</head>
+
+<body>
+	<div id="navbar">
+		<!-- Beginning of the info panel -->
+		<!-- <div class="alert alert-warning hidden" id="show_warning"></div>
+	<div class="alert alert-success hidden" id="show_success"></div> -->
+		<!-- End of the info pannel -->
+
+		<!-- Beginning of the navbar -->
+		<div id="nav">
+			<div id="wrapper" class="in">
+				<nav class="navbar navbar-default navbar-static-top"
+					role="navigation" style="margin-bottom: 0">
+					<div class="navbar-header">
+						<a id="JEManager" class="navbar-brand" href="javascript:void(0)">JEManager</a>
+					</div>
+					<!-- <div class="navbar-tools">  -->
+					<ul class="nav navbar-top-links  navbar-right in">
+						<li class="dropdown"></li>
+						<li id="dropdown" class="dropdown current-user"><a
+							class="dropdown-toggle" data-close-others="true"
+							data-toggle="dropdown" href="javascript:void(0)"> <i
+								class="fa fa-gear fa-fw"></i> <i class="fa fa-caret-down"></i>
+						</a>
+							<ul class="dropdown-menu">
+								<li><a href="#" id="logout"><i
+										class="fa fa-sign-out fa-fw"></i>Se déconnecter</a></li>
+							</ul></li>
+					</ul>
+					<div class="navbar-default sidebar" role="navigation">
+						<div class="sidebar-nav navbar-collapse">
+							<ul class="nav" id="side-menu">
+								<li><a href="javascript:void(0)"><i
+										class="fa fa-building-o fa-fw"></i> Entreprises<span
+										class="fa arrow"></span></a>
+									<ul class="nav nav-second-level">
+										<li><a id="showCompanies" href="javascript:void(0)"><i
+												class="fa fa-list-ul fa-fw"></i>Afficher Entreprises</a></li>
+										<li><a id="showFormCompany" href="javascript:void(0)"><i
+												class="fa fa-plus fa-fw"></i>Ajouter Entreprise</a></li>
+									</ul></li>
+								<li><a href="javascript:void(0)"><i
+										class="fa fa-user fa-fw"></i> Personnes de contact<span
+										class="fa arrow"></span></a>
+									<ul class="nav nav-second-level">
+										<li><a id="showContacts" href="javascript:void(0)"><i
+												class="fa fa-list-ul fa-fw"></i>Afficher Contacts</a></li>
+										<li><a id="showFormContact" href="javascript:void(0)"><i
+												class="fa fa-plus fa-fw"></i>Ajouter Contact</a></li>
+									</ul></li>
+								<li><a href="javascript:void(0)" id="showGestionJe"><i
+										class="fa fa-signal fa-fw"></i>Page Gestion JE<span
+										class="fa arrow"></span></a>
+									<ul class="nav nav-second-level">
+										<li><a id="showParticipations" href="javascript:void(0)"><i
+												class="fa fa-group fa-fw"></i>Afficher Participations</a></li>
+										<li><a id="showDashboard" href="javascript:void(0)"><i
+												class="fa fa-dashboard fa-fw"></i>Dashboard</a></li>
+										<li><a id="showCompaniesToInvite"
+											href="javascript:void(0)"><i class="fa fa-calendar fa-fw"></i>Invitations</a></li>
+									</ul></li>
+
+							</ul>
+						</div>
+						<!-- /.sidebar-collapse -->
+					</div>
+					<!-- </div>  -->
+				</nav>
+			</div>
+		</div>
+		<!-- End of the navbar -->
+	</div>
+	<div id="accueil">
+		<!-- Start of the accueil div -->
+		<div class="application_page main-content">
+			<div class="container" id="loginPage">
+
+				<div class="row"></div>
+
+				<div class="panel-heading">
+					<div class="panel-title text-center">
+						<!--<img src="pictures/ipl.png" alt="ipl logo" height="80" width="80" class="main-left">-->
+						<h2 class="title text-center">Journée Entreprises Manager</h2>
+						<hr />
+
+						<div id="signInDiv" class="main-center main-login">
+							<form id="signin" role="form">
+
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="glyphicon glyphicon-user"></i></span> <input id="login"
+										type="text" class="form-control" name="email" value=""
+										placeholder="Pseudo">
+								</div>
+
+								<br>
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="glyphicon glyphicon-lock"></i></span> <input id="password"
+										type="password" class="form-control" name="password" value=""
+										placeholder="Mot de passe">
+								</div>
+								<br>
+
+								<button id="connectButton" type="button"
+									class="btn btn-primary btn-lg btn-block login-button">Se
+									connecter</button>
+								<br>
+							</form>
+						</div>
+						<h4 id="registerInfo" class="main-center">
+							Pas encore de compte ? Cliquez ici pour vous <a
+								id="form_register_show">inscrire </a>
+						</h4>
+						<!-- Rounded switch -->
+
+						<div class="main-login main-center hidden" id="form_register">
+							<br>
+							<form class="form-horizontal" method="post" action="#">
+								<div class="form-group">
+									<div class="cols-sm-10">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="fa fa-user fa-fw" aria-hidden="true"></i></span> <input
+												type="text" class="form-control" name="name"
+												id="pseudo_register" placeholder="Votre pseudo" />
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="cols-sm-10 ">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="fa fa-user fa-fw" aria-hidden="true"></i></span> <input
+												type="text" class="form-control" name="name"
+												id="lastname_register" placeholder="Votre nom" />
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="cols-sm-10">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="fa fa-user fa-fw" aria-hidden="true"></i></span> <input
+												type="text" class="form-control" name="name"
+												id="firstname_register" placeholder="Votre prénom" />
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<div class="cols-sm-10">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="fa fa-envelope fa" aria-hidden="true"></i></span> <input
+												type="email" class="form-control" name="email" id="email"
+												placeholder="Votre email" />
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="cols-sm-10">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="fa fa-envelope fa" aria-hidden="true"></i></span> <input
+												type="email" class="form-control" name="email"
+												id="confirm_email" placeholder="Confirmer votre email" />
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<div class="cols-sm-10">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="fa fa-lock fa-lg" aria-hidden="true"></i></span> <input
+												type="password" class="form-control" name="password"
+												id="password_register" placeholder="Votre mot de passe" />
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<div class="cols-sm-10">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="fa fa-lock fa-lg" aria-hidden="true"></i></span> <input
+												type="password" class="form-control" name="confirm"
+												id="confirm_password"
+												placeholder="Confirmer votre mot de passe" />
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group ">
+									<button type="button" id="register"
+										class="btn btn-primary btn-lg btn-block login-button">Valider
+										Inscription</button>
+								</div>
+
+							</form>
+						</div>
+						<h4 id="loginInfo" class="main-center">
+							Cliquez ici pour vous <a id="form_register_hide">connecter </a>
+						</h4>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End of the accueil div -->
+	</div>
+	<div id="modal">
+		<!-- Modal form -->
+		<div id="eventModalForm" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Creation Journée entreprise</h4>
+					</div>
+					<div class="modal-body">
+						<p>
+							<b>Attention : vous êtes sur le point de créer une nouvelle
+								journée entreprise </b>
+						</p>
+						<form id="creation_event_form">
+							<div class="form-group">
+								<label for="eventDate">Date de la nouvelle JE</label> <input
+									type="date" class="form-control" id="evenDate" name="date"
+									placeholder="YYYY-MM-DD" />
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">
+							Close</button>
+						<button type="button" id="event_creation_btn"
+							class="btn btn-primary">sauver</button>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="content">
+		<div id="page-wrapper">
+			<div class="application_page" id="companies">
+				<div class="panel panel-default">
+					<div class="panel-heading">Entreprises</div>
+					<!-- Panel Heading -->
+					<div class="panel-body">
+						<div class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+							<div class="row">
+								<div class="col-sm-12">
+									<table
+										class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline"
+										aria-describedby="allCompaniesTable_info"
+										id="allCompaniesTable" role="grid" style="width: 100%;">
+										<thead>
+											<tr role="row">
+												<th></th>
+												<!-- Used for the icons -->
+												<th class="hidden"></th>
+												<!--  Used for the company id's (to test) -->
+												<th class="sorting" tabindex="0"
+													aria-controls="allCompaniesTable" aria-sort="ascending"
+													aria-label="Rendering engine : activate to sort column descending"
+													style="width: 164px;">Nom</th>
+												<th class="sorting" tabindex="1"
+													aria-controls="allCompaniesTable" aria-sort="ascending"
+													aria-label="Rendering engine : activate to sort column descending"
+													style="width: 164px;">Rue</th>
+												<th class="sorting" tabindex="2"
+													aria-controls="allCompaniesTable" aria-sort="ascending"
+													aria-label="Rendering engine : activate to sort column descending"
+													style="width: 164px;">Numéro</th>
+												<th class="sorting" tabindex="3"
+													aria-controls="allCompaniesTable" aria-sort="ascending"
+													aria-label="Rendering engine : activate to sort column descending"
+													style="width: 164px;">Commune</th>
+												<th class="sorting" tabindex="4"
+													aria-controls="allCompaniesTable" aria-sort="ascending"
+													aria-label="Rendering engine : activate to sort column descending"
+													style="width: 164px;">Code Postal</th>
+											</tr>
+										</thead>
+										<tbody>
+
+										</tbody>
+									</table>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="application_page" id="newCompany">
+				<div class="panel panel-default">
+					<div class="panel-heading">Formulaire d'ajout d'une
+						entreprise</div>
+					<div class="panel-body">
+						<!-- Start of the company creation form -->
+						<form id="createCompanyForm">
+							<div class="form-group">
+								<label for="name">Nom de la société :</label> <input type="text"
+									class="form-control" id="createCompanyFormName"
+									name="Nom de la société">
+							</div>
+							<div class="form-group">
+								<label for="dateFirstContact">Date de premier contact :</label>
+								<input type="date" class="form-control"
+									id="createCompanyFormDateFirstContact"
+									name="Date de premier contact" />
+							</div>
+							<div class="form-group">
+								<label for="street">Rue :</label> <input type="text"
+									class="form-control" id="createCompanyFormStreet" name="Rue" />
+							</div>
+							<div class="form-group">
+								<label for="number">Numero :</label> <input type="number"
+									class="form-control" id="createCompanyFormNumber" name="Numero" />
+							</div>
+							<div class="form-group">
+								<label for="box">Boite :</label> <input type="number"
+									class="form-control" id="createCompanyFormBox" name="Boite" />
+							</div>
+							<div class="form-group">
+								<label for="postalCode">Code postal :</label> <input
+									type="number" class="form-control"
+									id="createCompanyFormPostalCode" name="Code postal" />
+							</div>
+							<div class="form-group">
+								<label for="municipality">Commune :</label> <input type="text"
+									class="form-control" id="createCompanyFormMunicipality"
+									name="Commune" />
+							</div>
+							<button class="btn btn-success" id="createCompanyFormSubmit">Créer</button>
+						</form>
+						<!-- End of create company form -->
+					</div>
+				</div>
+			</div>
+			<div class="application_page" id="contacts">
+				<div class="panel panel-default">
+					<div class="panel-heading">Personnes de contact</div>
+					<!-- Panel Heading -->
+					<div class="panel-body">
+						<div class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+							<div class="row">
+								<div class="col-sm-12">
+									<table
+										class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline"
+										aria-describedby="allContactsTable_info" id="allContactsTable"
+										role="grid" style="width: 100%;">
+										<thead>
+											<tr role="row">
+												<th class="sorting" tabindex="0"
+													aria-controls="allContactsTable" aria-sort="ascending"
+													aria-label="Rendering engine : activate to sort column descending"
+													style="width: 164px;">Nom de l'entreprise</th>
+												<th class="sorting" tabindex="1"
+													aria-controls="allContactsTable" aria-sort="ascending"
+													aria-label="Rendering engine : activate to sort column descending"
+													style="width: 164px;">Prénom</th>
+												<th class="sorting" tabindex="2"
+													aria-controls="allContactsTable" aria-sort="ascending"
+													aria-label="Rendering engine : activate to sort column descending"
+													style="width: 164px;">Nom</th>
+												<th class="sorting" tabindex="3"
+													aria-controls="allContactsTable" aria-sort="ascending"
+													aria-label="Rendering engine : activate to sort column descending"
+													style="width: 164px;">Email</th>
+												<th class="sorting" tabindex="4"
+													aria-controls="allContactsTable" aria-sort="ascending"
+													aria-label="Rendering engine : activate to sort column descending"
+													style="width: 164px;">Numéro de téléphone</th>
+												<th class="sorting" tabindex="5"
+													aria-controls="allContactsTable" aria-sort="ascending"
+													aria-label="Rendering engine : activate to sort column descending"
+													style="width: 164px;">Actif</th>
+											</tr>
+										</thead>
+										<tbody>
+
+										</tbody>
+									</table>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="application_page" id="newContact">
+				<div class="panel panel-default">
+					<div class="panel-heading">Formulaire d'ajout d'un contact</div>
+					<div class="panel-body">
+						<!-- Start of the add contact form -->
+						<form id="form_addContact">
+							<div class="form-group">
+								<label for="idCompany">Nom de l'entreprise :</label> <select
+									form="form_addContact" class="form-control"
+									id="form_addContactCompany"></select>
+							</div>
+							<div class="form-group">
+								<label for="firstName">Prénom contact :</label> <input
+									type="text" class="form-control" id="form_addContactFirstName">
+							</div>
+							<div class="form-group">
+								<label for="lastName">Nom contact :</label> <input type="text"
+									class="form-control" id="form_addContactLastName">
+							</div>
+							<div class="form-group">
+								<label for="email">Email :</label> <input type="text"
+									class="form-control" id="form_addContactEmail">
+							</div>
+							<div class="form-group">
+								<label for="phoneNumber">Téléphone :</label> <input
+									type="number" class="form-control"
+									id="form_addContactPhoneNumber">
+							</div>
+							<button type="submit" class="btn btn-success"
+								id="form_addContactSubmit">Ajouter</button>
+						</form>
+						<!-- End of add contact form -->
+					</div>
+				</div>
+			</div>
+			<div class="application_page" id="dashboard">
+				<div class="panel panel-default">
+					<div class="panel-heading">Zone Dashboard</div>
+					<div class="panel-body">
+						<div class="col-md-3">
+							<table class="table table-striped table-bordered table-hover"
+								id="eventsTable">
+								<thead>
+									<tr>
+										<th>Journées Entreprises</th>
+									</tr>
+								</thead>
+								<tbody>
+								</tbody>
+							</table>
+						</div>
+						<div class="col-md-7">
+							<div class="panel panel-default">
+								<div id="dashboardHeader" class="panel-heading">Détails de
+									la journée entreprise</div>
+								<div id="dashboardBody" class="panel-body"></div>
+								<div id="chart"></div>
+								<div id="pieHover"></div>
+								<button id="eventShowAllButton" type='button'
+									class='btn btn-info'>Voir participations de la journée</button>
+							</div>
+							<button id="addEventButton" type="button" class="btn btn-info"
+								data-toggle="modal" data-target="#eventModalForm">Creer
+								une nouvelle JE</button>
+							<button id="getCsvButton" type="button" class="btn btn-info">
+								CSV complet</button>
+							<button id="getModifiedCsvButton" type="button"
+								class="btn btn-info">CSV ajouts</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="application_page" id="companiesToInvite">
+				<div class="panel panel-default">
+					<div class="panel-heading">Entreprises à inviter</div>
+					<!-- Panel Heading -->
+					<div class="panel-body">
+						<div class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+							<div class="row">
+								<div class="col-sm-12">
+									<table
+										class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline"
+										aria-describedby="companiesToInvite_info"
+										id="companiesToInviteTable" role="grid" style="width: 100%;">
+										<thead>
+											<tr role="row">
+												<th class="sorting" tabindex="0"
+													aria-controls="companiesToInviteTable"
+													aria-sort="ascending"
+													aria-label="Rendering engine : activate to sort column descending"
+													style="width: 164px;">Nom</th>
+												<th class="sorting" tabindex="1"
+													aria-controls="companiesToInviteTable"
+													aria-sort="ascending"
+													aria-label="Rendering engine : activate to sort column descending"
+													style="width: 164px;">Rue</th>
+												<th class="sorting" tabindex="2"
+													aria-controls="companiesToInviteTable"
+													aria-sort="ascending"
+													aria-label="Rendering engine : activate to sort column descending"
+													style="width: 164px;">Numéro</th>
+												<th class="sorting" tabindex="3"
+													aria-controls="companiesToInviteTable"
+													aria-sort="ascending"
+													aria-label="Rendering engine : activate to sort column descending"
+													style="width: 164px;">Commune</th>
+												<th class="sorting" tabindex="4"
+													aria-controls="companiesToInviteTable"
+													aria-sort="ascending"
+													aria-label="Rendering engine : activate to sort column descending"
+													style="width: 164px;">Code Postal</th>
+												<th class="sorting" tabindex="5"
+													aria-controls="companiesToInviteTable"
+													aria-sort="ascending"
+													aria-label="Rendering engine : activate to sort column descending"
+													style="width: 164px;">Inviter</th>
+												<th class="sorting" tabindex="6"
+													aria-controls="companiesToInviteTable"
+													aria-sort="ascending"
+													aria-label="Rendering engine : activate to sort column descending">ID</th>
+											</tr>
+										</thead>
+										<tbody>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+						<button class="btn btn-primary btn-lg btn-block login-button"
+							id="inviteButton">Invite</button>
+					</div>
+				</div>
+			</div>
+			<div class="application_page" id="participations">
+				<div class="panel panel-default">
+					<div class="panel-heading">Participations</div>
+					<div class="panel-body">
+						<button id="saveStates" type="button"
+							class="btn pull-right btn-success">Sauver</button>
+						<div class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+							<div class="row">
+								<div class="col-sm-12">
+									<table
+										class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline"
+										aria-describedby="participationsTable_info"
+										id="participationsTable" role="grid" style="width: 100%;">
+										<thead>
+
+											<tr role="row">
+												<!-- For the .details -->
+												<th></th>
+												<!-- hidden id -->
+												<th class="hidden"></th>
+												<th class="sorting" tabindex="0"
+													aria-controls="participationsTable" aria-sort="ascending"
+													aria-label="Rendering engine : activate to sort column descending"
+													style="width: 164px;">Nom Entreprise</th>
+												<th class="sorting" tabindex="1"
+													aria-controls="participationsTable" aria-sort="ascending"
+													aria-label="Rendering engine : activate to sort column descending"
+													style="width: 164px;">Rue</th>
+												<th class="sorting" tabindex="2"
+													aria-controls="participationsTable" aria-sort="ascending"
+													aria-label="Rendering engine : activate to sort column descending"
+													style="width: 164px;">Numero</th>
+												<th class="sorting" tabindex="3"
+													aria-controls="participationsTable" aria-sort="ascending"
+													aria-label="Rendering engine : activate to sort column descending"
+													style="width: 164px;">Commune</th>
+												<th class="sorting" tabindex="4"
+													aria-controls="participationsTable" aria-sort="ascending"
+													aria-label="Rendering engine : activate to sort column descending"
+													style="width: 164px;">Code Postal</th>
+												<th class="sorting" tabindex="4"
+													aria-controls="participationsTable" aria-sort="ascending"
+													aria-label="Rendering engine : activate to sort column descending"
+													style="width: 164px;">Etat</th>
+											</tr>
+										</thead>
+										<tbody>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="vendor/jquery/jquery.js"></script>
+
+	<!-- Bootstrap Core JavaScript -->
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+	<!-- Metis Menu Plugin JavaScript -->
+	<script src="vendor/metisMenu/metisMenu.min.js"></script>
+	<!-- Custom Theme JavaScript -->
+	<script src="vendor/bootstrap/js/sb-admin-2.js"></script>
+
+
+	<!-- Plot Chart JavaScript -->
+	<script src="vendor/flot/jquery.flot.js"></script>
+	<script src="vendor/flot/jquery.flot.pie.min.js"></script>
+
+	<!-- DataTables JavaScript -->
+	<script src="vendor/dataTables/jquery.dataTables.min.js"></script>
+	<script src="vendor/dataTables/dataTables.bootstrap.min.js"></script>
+	<script src="vendor/dataTables/dataTables.responsive.js"></script>
+
+	<!-- ToastR (Info Box ) Javascript -->
+	<script src="vendor/toastr/toastr.js"></script>
+
+
+	<!-- PAE06 Javascript -->
+	<script src="js/jem.js"></script>
+</body>
+</html>

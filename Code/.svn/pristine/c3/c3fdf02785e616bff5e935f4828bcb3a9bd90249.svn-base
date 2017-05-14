@@ -1,0 +1,75 @@
+import java.util.Arrays;
+import java.util.List;
+
+import biz.Company;
+import biz.Contact;
+import biz.Dto;
+import mockObjects.MockCompany;
+import mockObjects.MockContact;
+import persistence.dao.CompanyDao;
+
+public class MockCompanyDao implements CompanyDao, Validator {
+
+  private boolean selectAllExpected, selectAllReceived, getCompanyByIdExpected,
+      getCompanyByIdReceived, getCompaniesToInviteExpected, getCompaniesToInviteReceived,
+      getMyContactsExpected, getMyContactsReceived;
+
+  public MockCompanyDao(boolean selectAllExpected, boolean getCompanyByIdExpected,
+      boolean getCompaniesToInviteExpected, boolean getMyContactsExpected) {
+    this.selectAllExpected = selectAllExpected;
+    this.getCompanyByIdExpected = getCompanyByIdExpected;
+    this.getCompaniesToInviteExpected = getCompaniesToInviteExpected;
+    this.getMyContactsExpected = getMyContactsExpected;
+  }
+
+  @Override
+  public int update(Dto dto) {
+    // TODO Auto-generated method stub
+    return 0;
+  }
+
+  @Override
+  public int insert(Dto dto) {
+    // TODO Auto-generated method stub
+    return 0;
+  }
+
+  @Override
+  public int delete(Dto dto) {
+    // TODO Auto-generated method stub
+    return 0;
+  }
+
+  @Override
+  public List<Company> selectAll() {
+    selectAllReceived = true;
+    return Arrays.asList(new MockCompany());
+  }
+
+  @Override
+  public List<Company> getCompaniesToInvite() {
+    this.getCompaniesToInviteReceived = true;
+    return Arrays.asList(new MockCompany());
+  }
+
+  @Override
+  public Company getCompanyById(int idCompany) {
+    this.getCompanyByIdReceived = true;
+    return new MockCompany();
+  }
+
+  @Override
+  public List<Contact> getMyContacts(Company company) {
+    getMyContactsReceived = true;
+    return Arrays.asList(new MockContact());
+  }
+
+  @Override
+  public boolean validate() {
+    return selectAllReceived == selectAllExpected
+        && getCompanyByIdExpected == getCompanyByIdReceived
+        && getCompaniesToInviteExpected == getCompaniesToInviteReceived
+        && getMyContactsExpected == getMyContactsReceived;
+  }
+
+}

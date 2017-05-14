@@ -1,0 +1,34 @@
+package biz;
+
+import exceptions.UnvalidInformation;
+
+/**
+ * This is the User class's interface as seen from a UCC. Once a UCC has been given a DTO, he may
+ * cast said object into this type in order to access all business-related methods in addition to
+ * the DTO's accessors.
+ * 
+ * @author Maniet.Alexandre
+ */
+public interface User extends UserDto ,OptimisticLock {
+
+  /**
+   * Encryption password procedure.
+   */
+  void encryptPassword();
+
+  /**
+   * TODO complete javadoc.
+   * 
+   * @param plainText TODO
+   * @return TODO
+   */
+  boolean checkPassword(String plainText); // User has the encrypted password as an attribute
+
+  /**
+   * TODO complete javadoc.
+   * 
+   * @throws UnvalidInformation TODO
+   */
+  void checkNewUserInformation() throws UnvalidInformation;
+
+}

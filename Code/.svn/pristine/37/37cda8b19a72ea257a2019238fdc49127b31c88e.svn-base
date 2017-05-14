@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html id="myDocument">
+<head id="header">
+<!-- We need this to load the new head and so -->
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+
+<!-- Those div will be filled with our html sub-files -->
+<body>
+	<div id="navbar"></div>
+	<div id="accueil"></div>
+	<div id="modal"></div>
+	<div id="content">
+		<div id="page-wrapper">
+			<div class="application_page" id="companies"></div>
+			<div class="application_page" id="newCompany"></div>
+			<div class="application_page" id="contacts"></div>
+			<div class="application_page" id="newContact"></div>
+			<div class="application_page" id="dashboard"></div>
+			<div class="application_page" id="companiesToInvite"></div>
+			<div class="application_page" id="participations"></div>
+		</div>
+	</div>
+	
+
+	<!-- this load our .html in the header and divs -->
+	<script id="script">
+		$("#header").load("html/header.html");
+		$("#navbar").load("html/navbar.html");
+		$("#accueil").load("html/accueil.html");
+		$("#modal").load("html/modalPages.html");
+
+		//Content's divs
+		$("#companies").load("html/htmlContentParts/companies.html");
+		$("#newCompany").load("html/htmlContentParts/newCompany.html");
+		$("#contacts").load("html/htmlContentParts/contacts.html");
+		$("#newContact").load("html/htmlContentParts/newContact.html");
+		$("#dashboard").load("html/htmlContentParts/dashboard.html");
+		$("#companiesToInvite").load(
+				"html/htmlContentParts/companiesToInvite.html");
+		$("#participations").load(
+				"html/htmlContentParts/participations.html");
+		//End of the content's divs
+		$("#script").load("html/scripts.html");
+	</script>
+</body>
+</html>

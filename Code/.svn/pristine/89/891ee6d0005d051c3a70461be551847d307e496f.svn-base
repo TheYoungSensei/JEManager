@@ -1,0 +1,44 @@
+import org.junit.Before;
+import org.junit.Test;
+
+public class ContactUccImplTest {
+
+  /**
+   * @throws Exception TODO .
+   */
+  @Before
+  public void setUp() throws Exception {}
+
+  /**
+   * TODO .
+   */
+  @Test
+  public void testContactUccImpl() {
+    // fail("Not yet implemented");
+  }
+
+  /**
+   * TODO .
+   */
+  @Test
+  public void testAddContact() {
+    // fail("Not yet implemented");
+  }
+
+  /**
+   * TODO .
+   */
+  @Test
+  public void testGetAllContacts() {
+    // fail("Not yet implemented");
+  }
+
+  /**
+   * TODO .
+   */
+  @Test
+  public void testSetCompany() {
+    // fail("Not yet implemented");
+  }
+
+}

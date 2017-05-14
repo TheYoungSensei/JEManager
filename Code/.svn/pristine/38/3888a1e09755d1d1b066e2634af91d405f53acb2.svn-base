@@ -1,0 +1,34 @@
+<div class="panel panel-default">
+	<div class="panel-heading">Zone Dashboard</div>
+	<div class="panel-body">
+		<div class="col-md-3">
+			<table class="table table-striped table-bordered table-hover"
+				id="eventsTable">
+				<thead>
+					<tr>
+						<th>Journées Entreprises</th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+		</div>
+		<div class="col-md-7">
+			<div class="panel panel-default">
+				<div id="dashboardHeader" class="panel-heading">Détails de la
+					journée entreprise</div>
+				<div id="dashboardBody" class="panel-body">
+				</div>
+				<div id="chart"></div>
+				<div id="pieHover"></div>
+				<button id="eventShowAllButton" type='button' class='btn btn-info'>Voir participations de la journée</button>
+			</div>
+			<button id="addEventButton" type="button" class="btn btn-info" data-toggle="modal"
+				data-target="#eventModalForm">Creer une nouvelle JE</button>
+			<button id="getCsvButton" type="button" class="btn btn-info">
+				CSV complet</button>
+			<button id="getModifiedCsvButton" type="button" class="btn btn-info">
+				CSV ajouts</button>
+		</div>
+	</div>
+</div>

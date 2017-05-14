@@ -1,0 +1,11 @@
+package biz;
+
+public interface Dto {
+
+  /**
+   * 
+   * @return the id calculated on the basis of the class simple name and the object's id.
+   */
+  public String getId();
+
+}

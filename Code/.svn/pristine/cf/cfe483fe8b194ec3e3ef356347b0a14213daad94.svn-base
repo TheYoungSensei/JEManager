@@ -1,0 +1,76 @@
+package mockObjects;
+import java.util.Arrays;
+import java.util.List;
+
+import biz.Attendance;
+import biz.AttendanceDto;
+import biz.Dto;
+import biz.ParticipationDto;
+import persistence.dao.AttendanceDao;
+
+public class MockAttendanceDao implements AttendanceDao, Validator {
+
+  private boolean setAttendanceConfirmationExpected;
+  private boolean setAttendanceConfirmationReceived;
+  private boolean addAllForCompanyExpected;
+  private boolean addAllForCompanyReceived;
+  private boolean findAttendanceContactByParticipationExpected;
+  private boolean findAttendanceContactByParticipationReceived;
+
+
+  public MockAttendanceDao(boolean setAttendanceConfirmationExpected,
+      boolean addAllForCompanyExpected, boolean findAttendanceContactByParticipationExpected) {
+    this.setAttendanceConfirmationExpected = setAttendanceConfirmationExpected;
+    this.addAllForCompanyExpected = addAllForCompanyExpected;
+    this.findAttendanceContactByParticipationExpected =
+        findAttendanceContactByParticipationExpected;
+  }
+
+  @Override
+  public int update(Dto dto) {
+    // TODO Auto-generated method stub
+    return 0;
+  }
+
+  @Override
+  public int insert(Dto dto) {
+    // TODO Auto-generated method stub
+    return 0;
+  }
+
+  @Override
+  public int delete(Dto dto) {
+    // TODO Auto-generated method stub
+    return 0;
+  }
+
+  @Override
+  public Attendance setAttendanceConfirmation(Attendance attendance) {
+    setAttendanceConfirmationReceived = true;
+    return attendance;
+  }
+
+  @Override
+  public List<Integer> addAllForCompany(Attendance attendance, int idCompany) {
+    addAllForCompanyReceived = true;
+    return Arrays.asList(0);
+  }
+
+  @Override
+  public List<AttendanceDto> findAttendanceContactByParticipation(ParticipationDto participation) {
+    findAttendanceContactByParticipationReceived = true;
+    return Arrays.asList(new MockAttendance());
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see Validator#validate()
+   */
+  @Override
+  public boolean validate() {
+    return setAttendanceConfirmationExpected == setAttendanceConfirmationReceived
+        && addAllForCompanyExpected == addAllForCompanyReceived
+        && findAttendanceContactByParticipationExpected == findAttendanceContactByParticipationReceived;
+  }
+}

@@ -1,0 +1,10 @@
+package mockObjects;
+public interface Validator {
+
+  /**
+   * @author alexandre.maniet
+   * @return true if expected calls were found, false otherwise
+   */
+  public boolean validate();
+
+}

@@ -1,0 +1,55 @@
+import org.junit.Before;
+import org.junit.Test;
+
+public class UserUccImplTest {
+
+  /**
+   * TODO .
+   * 
+   * @throws java.lang.Exception
+   */
+  @Before
+  public void setUp() throws Exception {
+    // fail("Not yet implemented");
+  }
+
+  /**
+   * TODO .
+   */
+  @Test
+  public void testUserUccImpl() {
+    // fail("Not yet implemented");
+  }
+
+  /**
+   * TODO .
+   */
+  @Test
+  public void testLogin() {
+    // fail("Not yet implemented");
+  }
+
+  /**
+   * TODO .
+   */
+  @Test
+  public void testRegister() {
+    // fail("Not yet implemented");
+  }
+
+  /**
+   * TODO .
+   */
+  @Test
+  public void testGetUserByUsername() {
+    // fail("Not yet implemented");
+  }
+
+  /**
+   * TODO .
+   */
+  @Test
+  public void testGetUserById() {
+    // fail("Not yet implemented");
+  }
+}

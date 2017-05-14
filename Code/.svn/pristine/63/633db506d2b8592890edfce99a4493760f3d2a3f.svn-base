@@ -1,0 +1,48 @@
+import biz.Dto;
+import persistence.UnitOfWork;
+
+public class MockUnitOfWork implements UnitOfWork {
+
+  @Override
+  public void startTransaction() {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public void rollBack() {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public void addUpdate(Dto dto) {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public void addInsert(Dto dto) {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public void addDelete(Dto dto) {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public void commit() {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public int getResult() {
+    // TODO Auto-generated method stub
+    return 0;
+  }
+
+}

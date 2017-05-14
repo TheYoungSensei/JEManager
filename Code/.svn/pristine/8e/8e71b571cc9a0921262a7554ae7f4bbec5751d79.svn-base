@@ -1,0 +1,43 @@
+<head>
+<meta charset="UTF-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="pictures/favicon.ico" />
+<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<!--  Begin Favicons -->
+<link rel="icon" type="image/png" sizes="96x96"
+	href="pictures/favicons/favicon-96x96.png">
+<!--  End Favicons -->
+
+<!-- MetisMenu CSS -->
+<link href="vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+<!-- Custom CSS SB-ADMIN -->
+<link href="vendor/bootstrap/css/sb-admin-2.css" rel="stylesheet">
+<!-- Morris Charts CSS -->
+<link href="vendor/morris/morris.css" rel="stylesheet">
+<!-- Custom Fonts -->
+<link href="vendor/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css">
+
+<!-- DataTables CSS -->
+<link href="vendor/dataTables/dataTables.bootstrap.css"
+	rel="stylesheet">
+<!-- DataTables Responsive CSS -->
+<link href="vendor/dataTables/dataTables.responsive.css"
+	rel="stylesheet">
+
+<!-- ToastR (Info Box) CSS -->
+<link href="vendor/toastr/toastr.css" rel="stylesheet">
+
+
+
+
+<!-- Custom CSS -->
+<link href="css/jem.css" rel="stylesheet">
+
+
+
+<title>Journée Entreprises Manager</title>
+</head>
