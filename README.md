@@ -13,4 +13,4 @@ Special features to mention:
 - Tests are made using Junit
 - ...
 
-Authors : Arnelon, Antoine Maniet, Damien Meur, Christopher Sacrée, Sam Nda.
+Authors : Arnelon, Antoine Maniet, Damien Meur, Christopher Sacré, Sam Nda.
